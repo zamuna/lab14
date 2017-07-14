@@ -34,29 +34,19 @@ export class AppComponent {
     console.log(this.myformGrp);
   }
   getData() {
-    this.httpService.getMyData('https://jsonplaceholder.typicode.com/users/1').map(data => data.json())
+    this.httpService.getMyData()
       .subscribe(
       data1 => {
-        this.user.username = data1.username;
-        this.user.email = data1.email;
+        this.user.username = data1[0].username;
+        this.user.email = data1[0].email;
+        this.user.post=data1[1][Math.floor(Math.random() * data1[1].length)].body;
+        console.log("post"+this.user.post);
       },
       error => console.log(error),
-      () => this.getPost()
+      () =>console.log("completed")
       )
 
   }
-  getPost() {
-    this.httpService.getMyData('https://jsonplaceholder.typicode.com/posts?userId=1').map(data => data.json())
-      .subscribe(
-      data1 => {
-        for (let dd of data1) {
-          this.user.post = dd.body;
-        }
 
-      },
-      error => console.log(error),
-      () => console.log("Completed")
-      )
-  }
 
 }
