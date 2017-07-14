@@ -34,7 +34,7 @@ export class AppComponent {
     console.log(this.myformGrp);
   }
   getData() {
-    this.httpService.getMyData('http://jsonplaceholder.typicode.com/users/1').map(data => data.json())
+    this.httpService.getMyData('https://jsonplaceholder.typicode.com/users/1').map(data => data.json())
       .subscribe(
       data1 => {
         this.user.username = data1.username;
@@ -46,7 +46,7 @@ export class AppComponent {
 
   }
   getPost() {
-    this.httpService.getMyData('http://jsonplaceholder.typicode.com/posts?userId=1').map(data => data.json())
+    this.httpService.getMyData('https://jsonplaceholder.typicode.com/posts?userId=1').map(data => data.json())
       .subscribe(
       data1 => {
         for (let dd of data1) {
